@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>it&#39;s freedom</title>
+  
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://www.freefpp.com/"/>
+  <updated>2016-05-13T08:54:26.000Z</updated>
+  <id>http://www.freefpp.com/</id>
+  
+  <author>
+    <name>方平平</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>倩倩，我想晚上和你一起</title>
+    <link href="http://www.freefpp.com/2016/05/13/new-article/"/>
+    <id>http://www.freefpp.com/2016/05/13/new-article/</id>
+    <published>2016-05-13T02:55:34.000Z</published>
+    <updated>2016-05-13T08:54:26.000Z</updated>
+    
+    <content type="html">&lt;p&gt;＃ 倩倩，肚子还痛不痛&lt;/p&gt;
+&lt;p&gt;＃ 倩倩，不要吃水果&lt;/p&gt;
+&lt;p&gt;＃ 倩倩，不能乱吃东西&lt;/p&gt;
+&lt;p&gt;＃ 倩倩，现在在哪里&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;＃ 倩倩，肚子还痛不痛&lt;/p&gt;
+&lt;p&gt;＃ 倩倩，不要吃水果&lt;/p&gt;
+&lt;p&gt;＃ 倩倩，不能乱吃东西&lt;/p&gt;
+&lt;p&gt;＃ 倩倩，现在在哪里&lt;/p&gt;
+
+    
+    </summary>
+    
+    
+  </entry>
+  
+</feed>
