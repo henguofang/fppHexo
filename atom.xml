@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.freefpp.com/"/>
-  <updated>2016-05-13T08:54:26.000Z</updated>
+  <updated>2016-05-17T11:55:33.000Z</updated>
   <id>http://www.freefpp.com/</id>
   
   <author>
@@ -20,21 +20,50 @@
     <link href="http://www.freefpp.com/2016/05/13/new-article/"/>
     <id>http://www.freefpp.com/2016/05/13/new-article/</id>
     <published>2016-05-13T02:55:34.000Z</published>
-    <updated>2016-05-13T08:54:26.000Z</updated>
+    <updated>2016-05-17T11:55:33.000Z</updated>
     
-    <content type="html">&lt;p&gt;＃ 倩倩，肚子还痛不痛&lt;/p&gt;
-&lt;p&gt;＃ 倩倩，不要吃水果&lt;/p&gt;
-&lt;p&gt;＃ 倩倩，不能乱吃东西&lt;/p&gt;
-&lt;p&gt;＃ 倩倩，现在在哪里&lt;/p&gt;
-</content>
+    <content type="html">&lt;h1 id=&quot;java线程知识点梳理&quot;&gt;&lt;a href=&quot;#java线程知识点梳理&quot; class=&quot;headerlink&quot; title=&quot;java线程知识点梳理&quot;&gt;&lt;/a&gt;java线程知识点梳理&lt;/h1&gt;&lt;h2 id=&quot;一、操作系统中线程和进程的区别&quot;&gt;&lt;a href=&quot;#一、操作系统中线程和进程的区别&quot; class=&quot;headerlink&quot; title=&quot;一、操作系统中线程和进程的区别&quot;&gt;&lt;/a&gt;一、操作系统中线程和进程的区别&lt;/h2&gt;&lt;p&gt;简单来说，一个程序至少有一个进程，一个进程至少有一个线程。&lt;/p&gt;
+&lt;h2 id=&quot;二、线程的创建&quot;&gt;&lt;a href=&quot;#二、线程的创建&quot; class=&quot;headerlink&quot; title=&quot;二、线程的创建&quot;&gt;&lt;/a&gt;二、线程的创建&lt;/h2&gt;&lt;p&gt;继承Thread类和使用Runnable接口。&lt;/p&gt;
+&lt;h4 id=&quot;方法一：继承Thread类覆盖run方法&quot;&gt;&lt;a href=&quot;#方法一：继承Thread类覆盖run方法&quot; class=&quot;headerlink&quot; title=&quot;方法一：继承Thread类覆盖run方法&quot;&gt;&lt;/a&gt;方法一：继承Thread类覆盖run方法&lt;/h4&gt;&lt;pre&gt;&lt;code&gt;public class Demo1 {
+   public static void main(String[] args) {
+     Thread1 thread1=new Thread1();
+     thread1.start();
+     for(int i=0;i&amp;lt;60;i++){
+ System.out.println(Thread.currentThread().getName()+i);
+      }
+   }
+}
+   class Thread1 extends Thread{
+      @Override
+      public void run() {
+         for (int i = 0; i &amp;lt; 60; i++) {
+   System.out.println(Thread.currentThread().getName()+i);
+        }
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h4 id=&quot;方法二：继承Thread类覆盖run方法&quot;&gt;&lt;a href=&quot;#方法二：继承Thread类覆盖run方法&quot; class=&quot;headerlink&quot; title=&quot;方法二：继承Thread类覆盖run方法&quot;&gt;&lt;/a&gt;方法二：继承Thread类覆盖run方法&lt;/h4&gt;&lt;pre&gt;&lt;code&gt;public class Demo2 {
+   public static void main(String[] args){
+     Thread2 d =new Thread2();
+     Thread t = new Thread(d);
+     t.start();
+     for(int x=0;x&amp;lt;60;x++){
+  System.out.println(Thread.currentThread().getName()+x);
+       }
+    }
+}
+    class Thread2 implements Runnable{
+      @Override
+      public void run(){
+      for(int x=0;x&amp;lt;60;x++){
+  System.out.println(Thread.currentThread().getName()+x);
+       }
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;</content>
     
     <summary type="html">
     
-      &lt;p&gt;＃ 倩倩，肚子还痛不痛&lt;/p&gt;
-&lt;p&gt;＃ 倩倩，不要吃水果&lt;/p&gt;
-&lt;p&gt;＃ 倩倩，不能乱吃东西&lt;/p&gt;
-&lt;p&gt;＃ 倩倩，现在在哪里&lt;/p&gt;
-
+      &lt;h1 id=&quot;java线程知识点梳理&quot;&gt;&lt;a href=&quot;#java线程知识点梳理&quot; class=&quot;headerlink&quot; title=&quot;java线程知识点梳理&quot;&gt;&lt;/a&gt;java线程知识点梳理&lt;/h1&gt;&lt;h2 id=&quot;一、操作系统中线程和进程的区别&quot;&gt;&lt;a href=&quot;#一、
     
     </summary>
     
