@@ -1,5 +1,5 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> java线程知识点梳理 · it's freedom</title><meta name="description" content="java线程知识点梳理 - 方平平"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="short icon" href="/favicon.png"><link rel="stylesheet" href="/css/apollo.css"><link rel="stylesheet" href="http://fonts.useso.com/css?family=Source+Sans+Pro:400,600" type="text/css"></head><body><div class="wrap"><header><a href="/" class="logo-link"><img src="/favicon.png"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">BLOG</a></li><li class="nav-list-item"><a href="/archives/" target="_self" class="nav-list-link">ARCHIVE</a></li><li class="nav-list-item"><a href="http://weibo.com/2730544260/profile" target="_blank" class="nav-list-link">WEIBO</a></li><li class="nav-list-item"><a href="https://github.com/henguofang" target="_blank" class="nav-list-link">GITHUB</a></li><li class="nav-list-item"><a href="/atom.xml" target="_self" class="nav-list-link">RSS</a></li></ul></header><section class="container"><div class="post"><article class="post-block"><h1 class="post-title">java线程知识点梳理</h1><div class="post-info">2016年5月13日</div><div class="post-content"><h2 id="一、操作系统中线程和进程的区别"><a href="#一、操作系统中线程和进程的区别" class="headerlink" title="一、操作系统中线程和进程的区别"></a>一、操作系统中线程和进程的区别</h2><p>简单来说，一个程序至少有一个进程，一个进程至少有一个线程。</p>
-<h2 id="二、线程的创建"><a href="#二、线程的创建" class="headerlink" title="二、线程的创建"></a>二、线程的创建</h2><p>继承Thread类和使用Runnable接口。</p>
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> java线程知识点梳理 · it's freedom</title><meta name="description" content="java线程知识点梳理 - 方平平"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="short icon" href="/favicon.png"><link rel="stylesheet" href="/css/apollo.css"><link rel="stylesheet" href="http://fonts.useso.com/css?family=Source+Sans+Pro:400,600" type="text/css"></head><body><div class="wrap"><header><a href="/" class="logo-link"><img src="/favicon.png"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">BLOG</a></li><li class="nav-list-item"><a href="/archives/" target="_self" class="nav-list-link">ARCHIVE</a></li><li class="nav-list-item"><a href="http://weibo.com/2730544260/profile" target="_blank" class="nav-list-link">WEIBO</a></li><li class="nav-list-item"><a href="https://github.com/henguofang" target="_blank" class="nav-list-link">GITHUB</a></li><li class="nav-list-item"><a href="/atom.xml" target="_self" class="nav-list-link">RSS</a></li></ul></header><section class="container"><div class="post"><article class="post-block"><h1 class="post-title">java线程知识点梳理</h1><div class="post-info">2016年5月13日</div><div class="post-content"><h2 id="操作系统中线程和进程的区别"><a href="#操作系统中线程和进程的区别" class="headerlink" title="操作系统中线程和进程的区别"></a>操作系统中线程和进程的区别</h2><p>简单来说，一个程序至少有一个进程，一个进程至少有一个线程。</p>
+<h2 id="线程的创建"><a href="#线程的创建" class="headerlink" title="线程的创建"></a>线程的创建</h2><p>继承Thread类和使用Runnable接口。</p>
 <h4 id="方法一：继承Thread类覆盖run方法"><a href="#方法一：继承Thread类覆盖run方法" class="headerlink" title="方法一：继承Thread类覆盖run方法"></a>方法一：继承Thread类覆盖run方法</h4><pre><code>public class Demo1 {
    public static void main(String[] args) {
      Thread1 thread1=new Thread1();
@@ -35,4 +35,38 @@
        }
     }
 }
-</code></pre></div></article></div></section><footer><div class="paginator"></div><div class="copyright"><p>© 2015 - 2016 <a href="http://www.freefpp.com">方平平</a>, unless otherwise noted.</p></div></footer></div><script async src="//cdn.bootcss.com/mathjax/2.6.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><script>(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;e=o.createElement(i);r=o.getElementsByTagName(i)[0];e.src='//www.google-analytics.com/analytics.js';r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));ga('create',"UA-65933410-1",'auto');ga('send','pageview');</script></body></html>
+</code></pre><h2 id="线程的状态"><a href="#线程的状态" class="headerlink" title="线程的状态"></a>线程的状态</h2><h4 id="一、状态"><a href="#一、状态" class="headerlink" title="一、状态"></a>一、状态</h4><p>1、新建状态(New) :创建一个线程对象。</p>
+<p>2、可运行状态(Runnable) :当线程有资格运行，但调度程度还没有把它选定为运行线程时线程所处的状态。当start()方法调用时，线程首先进入可运行状态。在线程运行之后或者从阻塞、等待或睡眠状态回来后，也可返回到可运行状态。</p>
+<p>3、运行状态(Running) :线程获取了cpu资源，执行程序代码。</p>
+<p>4、阻塞状态(Blocked) :线程因为某种原因，放弃cpu资源，暂时停止运行，当某件事件出现，可能返回可运行状态。</p>
+<p>阻塞的情况分三种 :<br>(一)、等待 :运行的线程执行wait()方法，JVM会把该线程放入等待池中。</p>
+<p>(二)、同步阻塞 :运行的线程在获取对象的同步锁时，若该同步锁被别的线程占用，则JVM会把该线程放入锁池中。</p>
+<p>(三)、其他阻塞 :运行的线程执行sleep()或join()方法，或者发出了I/O请求时，JVM会把该线程置为阻塞状态。当sleep()状态超时、join()等待线程终止或者超时、或者I/O处理完毕时，线程重新转入就绪状态。</p>
+<p>5、死亡状态（Dead）：线程执行完了或者因异常退出了run()方法，该线程结束生命周期。</p>
+<h4 id="二、常用函数说明"><a href="#二、常用函数说明" class="headerlink" title="二、常用函数说明"></a>二、常用函数说明</h4><p>常用的函数 :join()、join(long millis)、join(long millis, int nanos)、sleep(long millis)、sleep(long millis, int nanos)、wait()、wait(long millis)、wait(long millis,int nanos)、yield()、notify、notifyAll</p>
+<p>join()、join(long millis)、join(long millis, int nanos)</p>
+<pre><code>public class Demo3 {
+   public static void main(String[] args) {
+        Thread3 a=new Thread3();
+        Thread3 b=new Thread3();
+        a.start();
+        b.start();
+   }
+}
+class Thread3 extends Thread{
+   @Override
+   public void run() {
+System.out.println(Thread.currentThread().getName() + &quot; 线程运行开始!&quot;);  
+      for (int i = 0; i &lt; 5; i++) {  
+           System.out.println(&quot;子线程&quot;+Thread.currentThread().getName() + &quot;运行 : &quot; + i);  
+        try {  
+            sleep((int) Math.random() * 10);  
+        } catch (InterruptedException e) {  
+            e.printStackTrace();  
+        }  
+    }  
+    System.out.println(Thread.currentThread().getName() + &quot; 线程运行结束!&quot;);  
+   }
+}
+</code></pre><p><code>Thread-0 线程运行开始!</code><br><code>Thread-1 线程运行开始!</code><br><code>子线程Thread-1运行 : 0</code><br><code>子线程Thread-0运行 : 0</code><br><code>子线程Thread-1运行 : 1</code><br><code>子线程Thread-0运行 : 1</code><br><code>子线程Thread-0运行 : 2</code><br><code>子线程Thread-1运行 : 2</code><br><code>子线程Thread-0运行 : 3</code><br><code>子线程Thread-1运行 : 3</code><br><code>子线程Thread-0运行 : 4</code><br><code>子线程Thread-1运行 : 4</code><br><code>Thread-1 线程运行结束!</code><br><code>Thread-0 线程运行结束!</code>       </p>
+</div></article></div></section><footer><div class="paginator"></div><div class="copyright"><p>© 2015 - 2016 <a href="http://www.freefpp.com">方平平</a>, unless otherwise noted.</p></div></footer></div><script async src="//cdn.bootcss.com/mathjax/2.6.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><script>(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;e=o.createElement(i);r=o.getElementsByTagName(i)[0];e.src='//www.google-analytics.com/analytics.js';r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));ga('create',"UA-65933410-1",'auto');ga('send','pageview');</script></body></html>
