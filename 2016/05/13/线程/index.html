@@ -43,14 +43,15 @@
 <p>(二)、同步阻塞 :运行的线程在获取对象的同步锁时，若该同步锁被别的线程占用，则JVM会把该线程放入锁池中。</p>
 <p>(三)、其他阻塞 :运行的线程执行sleep()或join()方法，或者发出了I/O请求时，JVM会把该线程置为阻塞状态。当sleep()状态超时、join()等待线程终止或者超时、或者I/O处理完毕时，线程重新转入就绪状态。</p>
 <p>5、死亡状态（Dead）：线程执行完了或者因异常退出了run()方法，该线程结束生命周期。</p>
-<h4 id="二、常用函数说明"><a href="#二、常用函数说明" class="headerlink" title="二、常用函数说明"></a>二、常用函数说明</h4><p>常用的函数 :join()、join(long millis)、join(long millis, int nanos)、sleep(long millis)、sleep(long millis, int nanos)、wait()、wait(long millis)、wait(long millis,int nanos)、yield()、notify、notifyAll</p>
-<p>join()、join(long millis)、join(long millis, int nanos)</p>
+<h4 id="二、常用函数说明"><a href="#二、常用函数说明" class="headerlink" title="二、常用函数说明"></a>二、常用函数说明</h4><p>1、join()、join(long millis)、join(long millis, int nanos)    </p>
+<p>在很多情况下，主线程生成并起动了子线程，如果子线程里要进行大量的耗时的运算，主线程往往将于子线程之前结束，但是如果主线程处理完其他的事务后，需要用到子线程的处理结果，也就是主线程需要等待子线程执行完成之后再结束，这个时候就要用到join()方法了。</p>
 <pre><code>public class Demo3 {
    public static void main(String[] args) {
+  System.out.println(Thread.currentThread().getName() + &quot; 线程运行开始!&quot;);
         Thread3 a=new Thread3();
-        Thread3 b=new Thread3();
         a.start();
-        b.start();
+  System.out.println(Thread.currentThread().getName() + &quot; 线程运行结束!&quot;);
+
    }
 }
 class Thread3 extends Thread{
@@ -68,5 +69,148 @@ System.out.println(Thread.currentThread().getName() + &quot; 线程运行开始!
     System.out.println(Thread.currentThread().getName() + &quot; 线程运行结束!&quot;);  
    }
 }
-</code></pre><p><code>Thread-0 线程运行开始!</code><br><code>Thread-1 线程运行开始!</code><br><code>子线程Thread-1运行 : 0</code><br><code>子线程Thread-0运行 : 0</code><br><code>子线程Thread-1运行 : 1</code><br><code>子线程Thread-0运行 : 1</code><br><code>子线程Thread-0运行 : 2</code><br><code>子线程Thread-1运行 : 2</code><br><code>子线程Thread-0运行 : 3</code><br><code>子线程Thread-1运行 : 3</code><br><code>子线程Thread-0运行 : 4</code><br><code>子线程Thread-1运行 : 4</code><br><code>Thread-1 线程运行结束!</code><br><code>Thread-0 线程运行结束!</code>       </p>
+</code></pre><p><code>main 线程运行开始!</code><br><code>main 线程运行结束!</code><br><code>Thread-0 线程运行开始!</code><br><code>子线程Thread-0运行 : 0</code><br><code>子线程Thread-0运行 : 1</code><br><code>子线程Thread-0运行 : 2</code><br><code>子线程Thread-0运行 : 3</code><br><code>子线程Thread-0运行 : 4</code><br><code>Thread-0 线程运行结束!</code>        </p>
+<pre><code> public class Demo3 {
+   public static void main(String[] args) {
+  System.out.println(Thread.currentThread().getName() + &quot; 线程运行开始!&quot;);
+        Thread3 a=new Thread3();
+           a.start();
+        a.jion();
+System.out.println(Thread.currentThread().getName() + &quot; 线程运行结束!&quot;);
+   }
+}
+class Thread3 extends Thread{
+   @Override
+   public void run() {
+System.out.println(Thread.currentThread().getName() + &quot; 线程运行开始!&quot;);  
+      for (int i = 0; i &lt; 5; i++) {  
+           System.out.println(&quot;子线程&quot;+Thread.currentThread().getName() + &quot;运行 : &quot; + i);  
+        try {  
+            sleep((int) Math.random() * 10);  
+        } catch (InterruptedException e) {  
+            e.printStackTrace();  
+        }  
+    }  
+    System.out.println(Thread.currentThread().getName() + &quot; 线程运行结束!&quot;);  
+   }
+}
+</code></pre><p><code>main 线程运行开始!</code><br><code>Thread-0 线程运行开始!</code><br><code>子线程Thread-0运行 : 0</code><br><code>子线程Thread-0运行 : 1</code><br><code>子线程Thread-0运行 : 2</code><br><code>子线程Thread-0运行 : 3</code><br><code>子线程Thread-0运行 : 4</code><br><code>Thread-0 线程运行结束!</code><br><code>main 线程运行结束!</code><br>2、sleep(long millis)、    sleep(long millis, int nanos)</p>
+<p> 在指定的毫秒数内让当前正在执行的线程休眠（暂停执行），不会释放锁</p>
+<p>3、wait()、wait(long millis)、wait(long millis, int nanos)<br>notify()、notifyAll()</p>
+<p>① 调用某个对象的wait()方法，相当于让当前线程交出此对象的monitor，然后进入等待状态，等待后续再次获得此对象的锁</p>
+<p>② notify()方法能够唤醒一个正在等待该对象的monitor的线程，当有多个线程都在等待该对象的monitor的话，则只能唤醒其中一个线程，具体唤醒哪个线程则不得而知。</p>
+<p>③ 调用某个对象的notify()方法，当前线程也必须拥有这个对象的monitor，因此调用notify()方法必须在同步块或者同步方法中进行（synchronized块或者synchronized方法）。    </p>
+<pre><code>public class Demo4 {
+   public static Object object = new Object();
+
+   public static void main(String[] args) throws       Exception {
+      Thread4 thread4 = new Thread4();
+      Thread5 thread5 = new Thread5();
+
+      thread4.start();
+
+      try {
+          Thread.sleep(200);
+      } catch (InterruptedException e) {
+          e.printStackTrace();
+      }
+
+      thread5.start();
+ }
+
+static class Thread4 extends Thread {
+    @Override
+    public void run() {
+        synchronized (object) {
+            try {
+                object.wait();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            System.out.println(&quot;线程&quot; + Thread.currentThread().getName()
+                    + &quot;获取到了锁&quot;);
+        }
+    }
+}
+
+static class Thread5 extends Thread {
+    @Override
+    public void run() {
+        synchronized (object) {
+            object.notify();
+            System.out.println(&quot;线程&quot; + Thread.currentThread().getName()
+                    + &quot;调用了object.notify()&quot;);
+        }
+        System.out
+                .println(&quot;线程&quot; + Thread.currentThread().getName() + &quot;释放了锁&quot;);
+    }
+ }
+}
+</code></pre><p><code>线程Thread-1调用了object.notify()</code><br><code>线程Thread-1释放了锁</code><br><code>线程Thread-0获取到了锁</code></p>
+<p>生产者－消费者模型的实现</p>
+<p>在前面我们将了很多关于同步的问题，然而在现实中，需要线程之间的协作。比如说最经典的生产者-消费者模型：当队列满时，生产者需要等待队列有空间才能继续往里面放入商品，而在等待的期间内，生产者必须释放对临界资源（即队列）的占用权。因为生产者如果不释放对临界资源的占用权，那么消费者就无法消费队列中的商品，就不会让队列有空间，那么生产者就会一直无限等待下去。因此，一般情况下，当队列满时，会让生产者交出对临界资源的占用权，并进入挂起状态。然后等待消费者消费了商品，然后消费者通知生产者队列有空间了。同样地，当队列空时，消费者也必须等待，等待生产者通知它队列中有商品了。这种互相通信的过程就是线程间的协作。</p>
+<pre><code>public class Demo5 {
+    private int queueSize=10;
+    private PriorityQueue&lt;Integer&gt; queue = new PriorityQueue&lt;Integer&gt;(queueSize);
+    public static void main(String[] args) {
+        Demo5 test = new Demo5();
+        Producer producer = test.new Producer();
+        Consumer consumer = test.new Consumer();
+        consumer.start();
+        producer.start();
+
+  }
+  class Consumer extends Thread{
+      @Override
+    public void run() {
+          consume();
+    }
+      private void  consume(){
+          while(true){
+              synchronized (queue) {
+                while (queue.size()==0) {
+                    try {
+                        System.out.println(&quot;队列空，等待数据&quot;);
+                        queue.wait();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+                queue.poll();
+                queue.notify();
+                System.out.println(&quot;从队列取走一个元素，队列剩余&quot;+queue.size()+&quot;个元素&quot;);
+            }
+          }
+
+      }
+  }
+
+  class Producer extends Thread{
+      @Override
+    public void run() {
+          produce();
+    }
+      private void  produce(){
+          while (true) {
+             synchronized (queue) {
+                while (queue.size()==queueSize) {
+                    try {
+                        System.out.println(&quot;队列满，等待有空余空间&quot;);
+                        queue.wait();
+                    } catch (InterruptedException e) {
+
+                        e.printStackTrace();
+                    }
+                }
+                queue.offer(1);
+                queue.notify();
+                System.out.println(&quot;向队列取中插入一个元素，队列剩余空间：&quot;+queue.size());
+            }
+
+        }
+      }
+
+  }
+}
+</code></pre><p><code>队列满，等待有空余空间</code><br><code>从队列取走一个元素，队列剩余9个元素</code><br><code>从队列取走一个元素，队列剩余8个元素</code><br><code>从队列取走一个元素，队列剩余7个元素</code><br><code>从队列取走一个元素，队列剩余6个元素</code><br><code>从队列取走一个元素，队列剩余5个元素</code><br><code>从队列取走一个元素，队列剩余4个元素</code><br><code>从队列取走一个元素，队列剩余3个元素</code><br><code>从队列取走一个元素，队列剩余2个元素</code><br><code>从队列取走一个元素，队列剩余1个元素</code><br><code>从队列取走一个元素，队列剩余0个元素</code><br><code>队列空，等待数据</code><br><code>向队列取中插入一个元素，队列剩余空间：1</code><br><code>向队列取中插入一个元素，队列剩余空间：2</code><br><code>向队列取中插入一个元素，队列剩余空间：3</code><br><code>向队列取中插入一个元素，队列剩余空间：4</code><br><code>从队列取走一个元素，队列剩余3个元素</code><br><code>从队列取走一个元素，队列剩余2个元素</code><br><code>从队列取走一个元素，队列剩余1个元素</code><br><code>从队列取走一个元素，队列剩余0个元素</code><br><code>队列空，等待数据</code>    </p>
 </div></article></div></section><footer><div class="paginator"></div><div class="copyright"><p>© 2015 - 2016 <a href="http://www.freefpp.com">方平平</a>, unless otherwise noted.</p></div></footer></div><script async src="//cdn.bootcss.com/mathjax/2.6.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><script>(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;e=o.createElement(i);r=o.getElementsByTagName(i)[0];e.src='//www.google-analytics.com/analytics.js';r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));ga('create',"UA-65933410-1",'auto');ga('send','pageview');</script></body></html>
