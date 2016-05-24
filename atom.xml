@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.freefpp.com/"/>
-  <updated>2016-05-18T09:05:58.000Z</updated>
+  <updated>2016-05-24T11:45:58.000Z</updated>
   <id>http://www.freefpp.com/</id>
   
   <author>
@@ -14,6 +14,224 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>常见的面试题</title>
+    <link href="http://www.freefpp.com/2016/05/24/%E5%B8%B8%E8%A7%81%E7%9A%84%E9%9D%A2%E8%AF%95%E9%A2%98/"/>
+    <id>http://www.freefpp.com/2016/05/24/常见的面试题/</id>
+    <published>2016-05-24T11:36:18.000Z</published>
+    <updated>2016-05-24T11:45:58.000Z</updated>
+    
+    <content type="html"></content>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>java基础知识点梳理</title>
+    <link href="http://www.freefpp.com/2016/05/18/java%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E7%82%B9%E6%A2%B3%E7%90%86/"/>
+    <id>http://www.freefpp.com/2016/05/18/java基础知识点梳理/</id>
+    <published>2016-05-18T09:23:19.000Z</published>
+    <updated>2016-05-24T12:27:25.000Z</updated>
+    
+    <content type="html">&lt;h2 id=&quot;类&quot;&gt;&lt;a href=&quot;#类&quot; class=&quot;headerlink&quot; title=&quot;类&quot;&gt;&lt;/a&gt;类&lt;/h2&gt;&lt;p&gt;1) 在每个类文件中最多只允许出现一个public类&lt;/p&gt;
+&lt;p&gt;2) 如果没有显示地定义构造器，则编译器会自动创建一个无参构造器，如果显示地定义了构造器，编译器就不会自动添加构造器。注意，所有的构造器默认为static的。&lt;/p&gt;
+&lt;p&gt;3) 初始化顺序&lt;br&gt;static成员变量和static语句块—–&amp;gt;对象的成员变量(先初始化)—–&amp;gt;构造器&lt;/p&gt;
+&lt;p&gt;4) 子类是不能够继承父类的构造器，但是要注意的是，如果父类的构造器都是带有参数的，则必须在子类的构造器中显示地通过super关键字调用父类的构造器并配以适当的参数列表。如果父类有无参构造器，则在子类的构造器中用super关键字调用父类构造器不是必须的，如果没有使用super关键字，系统会自动调用父类的无参构造器。&lt;/p&gt;
+&lt;h2 id=&quot;继承与多态&quot;&gt;&lt;a href=&quot;#继承与多态&quot; class=&quot;headerlink&quot; title=&quot;继承与多态&quot;&gt;&lt;/a&gt;继承与多态&lt;/h2&gt;&lt;p&gt;覆盖只针对非静态方法（终态方法不能被继承，所以就存在覆盖一说了），而隐藏是针对成员变量和静态方法的。这2者之间的区别是：覆盖受RTTI（Runtime type  identification）约束的，而隐藏却不受该约束。也就是说只有覆盖方法才会进行动态绑定，而隐藏是不会发生动态绑定的。在Java中，除了static方法和final方法，其他所有的方法都是动态绑定。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;public class Demo8 {
+    public static void main(String[] args)  {
+        Shape shape = new Circle();
+        System.out.println(shape.name);
+        shape.printType();
+        shape.printName();
+    }
+}
+
+class Shape {
+    public String name = &amp;quot;shape&amp;quot;;
+
+    public Shape(){
+        System.out.println(&amp;quot;shape constructor&amp;quot;);
+    }
+
+    public void printType() {
+        System.out.println(&amp;quot;this is shape&amp;quot;);
+    }
+
+    public static void printName() {
+        System.out.println(&amp;quot;shape&amp;quot;);
+    }
+}
+
+class Circle extends Shape {
+    public  String name = &amp;quot;circle&amp;quot;;
+
+    public Circle() {
+        System.out.println(&amp;quot;circle constructor&amp;quot;);
+    }
+
+    public void printType() {
+        System.out.println(&amp;quot;this is circle&amp;quot;);
+    }
+
+    public static void printName() {
+        System.out.println(&amp;quot;circle&amp;quot;);
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;code&gt;shape constructor&lt;/code&gt;&lt;br&gt;&lt;code&gt;circle constructor&lt;/code&gt;&lt;br&gt;&lt;code&gt;shape&lt;/code&gt;&lt;br&gt;&lt;code&gt;this is circle&lt;/code&gt;&lt;br&gt;&lt;code&gt;shape&lt;/code&gt;      &lt;/p&gt;
+&lt;h3 id=&quot;什么是多态&quot;&gt;&lt;a href=&quot;#什么是多态&quot; class=&quot;headerlink&quot; title=&quot;什么是多态&quot;&gt;&lt;/a&gt;什么是多态&lt;/h3&gt;&lt;p&gt;下面是网上看到的一篇文章，写的很棒&lt;br&gt;&lt;a href=&quot;http://www.cnblogs.com/jack204/archive/2012/10/29/2745150.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;链接&lt;/a&gt;  &lt;/p&gt;
+&lt;h4 id=&quot;Java中多态性的实现&quot;&gt;&lt;a href=&quot;#Java中多态性的实现&quot; class=&quot;headerlink&quot; title=&quot;Java中多态性的实现&quot;&gt;&lt;/a&gt;Java中多态性的实现&lt;/h4&gt;&lt;h4 id=&quot;什么是多态-1&quot;&gt;&lt;a href=&quot;#什么是多态-1&quot; class=&quot;headerlink&quot; title=&quot;什么是多态&quot;&gt;&lt;/a&gt;什么是多态&lt;/h4&gt;&lt;p&gt;面向对象的三大特性：封装、继承、多态。从一定角度来看，封装和继承几乎都是为多态而准备的。这是我们最后一个概念，也是最重要的知识点。    &lt;/p&gt;
+&lt;p&gt;多态的定义：指允许不同类的对象对同一消息做出响应。即同一消息可以根据发送对象的不同而采用多种不同的行为方式。（发送消息就是函数调用）&lt;br&gt;实现多态的技术称为：动态绑定（dynamic binding），是指在执行期间判断所引用对象的实际类型，根据其实际的类型调用其相应的方法。 &lt;/p&gt;
+&lt;h4 id=&quot;多态的作用：消除类型之间的耦合关系。&quot;&gt;&lt;a href=&quot;#多态的作用：消除类型之间的耦合关系。&quot; class=&quot;headerlink&quot; title=&quot;多态的作用：消除类型之间的耦合关系。&quot;&gt;&lt;/a&gt;多态的作用：消除类型之间的耦合关系。&lt;/h4&gt;&lt;p&gt;现实中，关于多态的例子不胜枚举。比方说按下 F1 键这个动作，如果当前在 Flash 界面下弹出的就是 AS 3 的帮助文档；如果当前在 Word 下弹出的就是 Word 帮助；在 Windows 下弹出的就是 Windows 帮助和支持。同一个事件发生在不同的对象上会产生不同的结果。&lt;br&gt;下面是多态存在的三个必要条件，要求大家做梦时都能背出来！&lt;/p&gt;
+&lt;h4 id=&quot;多态存在的三个必要条件&quot;&gt;&lt;a href=&quot;#多态存在的三个必要条件&quot; class=&quot;headerlink&quot; title=&quot;多态存在的三个必要条件&quot;&gt;&lt;/a&gt;多态存在的三个必要条件&lt;/h4&gt;&lt;p&gt;一、要有继承；&lt;br&gt;二、要有重写；&lt;br&gt;三、父类引用指向子类对象。&lt;/p&gt;
+&lt;h4 id=&quot;多态的好处：&quot;&gt;&lt;a href=&quot;#多态的好处：&quot; class=&quot;headerlink&quot; title=&quot;多态的好处：&quot;&gt;&lt;/a&gt;多态的好处：&lt;/h4&gt;&lt;p&gt;1.可替换性（substitutability）。多态对已存在代码具有可替换性。例如，多态对圆Circle类工作，对其他任何圆形几何体，如圆环，也同样工作。&lt;br&gt;2.可扩充性（extensibility）。多态对代码具有可扩充性。增加新的子类不影响已存在类的多态性、继承性，以及其他特性的运行和操作。实际上新加子类更容易获得多态功能。例如，在实现了圆锥、半圆锥以及半球体的多态基础上，很容易增添球体类的多态性。&lt;br&gt;3.接口性（interface-ability）。多态是超类通过方法签名，向子类提供了一个共同接口，由子类来完善或者覆盖它而实现的。如图8.3 所示。图中超类Shape规定了两个实现多态的接口方法，computeArea()以及computeVolume()。子类，如Circle和Sphere为了实现多态，完善或者覆盖这两个接口方法。&lt;br&gt;4.灵活性（flexibility）。它在应用中体现了灵活多样的操作，提高了使用效率。&lt;br&gt;5.简化性（simplicity）。多态简化对应用软件的代码编写和修改过程，尤其在处理大量对象的运算和操作时，这个特点尤为突出和重要。&lt;/p&gt;
+&lt;p&gt;Java中多态的实现方式：接口实现，继承父类进行方法重写，同一个类中进行方法重载。        &lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;public class Demo11 {
+    public static void main(String[] args) {
+        A a1 = new A();  
+        A a2 = new B();  
+        B b = new B();  
+        C c = new C();   
+        D d = new D();  
+        System.out.println(a1.show(b));     
+        System.out.println(a1.show(c));   
+        System.out.println(a1.show(d));   
+        System.out.println(a2.show(b));    
+        System.out.println(a2.show(c));    
+        System.out.println(a2.show(d));    
+        System.out.println(b.show(b));    
+        System.out.println(b.show(c));      
+        System.out.println(b.show(d));   
+    }
+
+}
+class A {  
+    public String show(D obj){  
+           return (&amp;quot;A and D&amp;quot;);  
+    }   
+    public String show(A obj){  
+           return (&amp;quot;A and A&amp;quot;);  
+    }   
+}   
+class B extends A{  
+    public String show(B obj){  
+           return (&amp;quot;B and B&amp;quot;);  
+    }  
+    public String show(A obj){  
+           return (&amp;quot;B and A&amp;quot;);  
+    }   
+}  
+class C extends B{}   
+class D extends B{}  
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;code&gt;A and A&lt;/code&gt;&lt;br&gt;&lt;code&gt;A and A&lt;/code&gt;&lt;br&gt;&lt;code&gt;A and D&lt;/code&gt;&lt;br&gt;&lt;code&gt;B and A&lt;/code&gt;&lt;br&gt;&lt;code&gt;B and A&lt;/code&gt;&lt;br&gt;&lt;code&gt;A and D&lt;/code&gt;&lt;br&gt;&lt;code&gt;B and B&lt;/code&gt;&lt;br&gt;&lt;code&gt;B and B&lt;/code&gt;&lt;br&gt;&lt;code&gt;A and D&lt;/code&gt;        &lt;/p&gt;
+&lt;h2 id=&quot;static静态&quot;&gt;&lt;a href=&quot;#static静态&quot; class=&quot;headerlink&quot; title=&quot;static静态&quot;&gt;&lt;/a&gt;static静态&lt;/h2&gt;&lt;p&gt;1) static 方法&lt;br&gt;由于静态方法不依赖于任何对象就可以访问，因此是没有this的，在静态方法中不能访问类的非静态成员变量和非静态成员方法，但是在非静态成员方法中是可以访问静态成员方法/变量的。&lt;/p&gt;
+&lt;p&gt;2) static 变量&lt;/p&gt;
+&lt;p&gt;3) static 代码块&lt;br&gt;形成静态代码块以优化程序性能。static块可以置于类中的任何地方，类中可以有多个static块。在类初次被加载的时候，会按照static块的顺序来执行每个static块，并且只会执行一次。&lt;/p&gt;
+&lt;h4 id=&quot;能通过this访问静态成员变量吗？&quot;&gt;&lt;a href=&quot;#能通过this访问静态成员变量吗？&quot; class=&quot;headerlink&quot; title=&quot;能通过this访问静态成员变量吗？&quot;&gt;&lt;/a&gt;能通过this访问静态成员变量吗？&lt;/h4&gt;&lt;pre&gt;&lt;code&gt;public class Main {　　
+    static int value = 33;
+
+    public static void main(String[] args) throws         Exception{
+        new Main().printValue();
+    }
+
+    private void printValue(){
+        int value = 3;
+        System.out.println(this.value);
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;code&gt;33&lt;/code&gt;&lt;/p&gt;
+&lt;h4 id=&quot;下面这段代码的输出结果是什么？&quot;&gt;&lt;a href=&quot;#下面这段代码的输出结果是什么？&quot; class=&quot;headerlink&quot; title=&quot;下面这段代码的输出结果是什么？&quot;&gt;&lt;/a&gt;下面这段代码的输出结果是什么？&lt;/h4&gt;&lt;pre&gt;&lt;code&gt;public class Test extends Base{
+
+    static{
+        System.out.println(&amp;quot;test static&amp;quot;);
+    }
+
+    public Test(){
+        System.out.println(&amp;quot;test constructor&amp;quot;);
+    }
+
+    public static void main(String[] args) {
+        new Test();
+    }
+}
+
+    class Base{
+
+    static{
+        System.out.println(&amp;quot;base static&amp;quot;);
+    }
+
+    public Base(){
+        System.out.println(&amp;quot;base constructor&amp;quot;);
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;code&gt;base static&lt;/code&gt;&lt;br&gt;&lt;code&gt;test static&lt;/code&gt;&lt;br&gt;&lt;code&gt;base constructor&lt;/code&gt;&lt;br&gt;&lt;code&gt;test constructor&lt;/code&gt;         &lt;/p&gt;
+&lt;h4 id=&quot;这段代码的输出结果是什么？&quot;&gt;&lt;a href=&quot;#这段代码的输出结果是什么？&quot; class=&quot;headerlink&quot; title=&quot;这段代码的输出结果是什么？&quot;&gt;&lt;/a&gt;这段代码的输出结果是什么？&lt;/h4&gt;&lt;pre&gt;&lt;code&gt;public class Test {
+    Person person = new Person(&amp;quot;Test&amp;quot;);
+    static{
+        System.out.println(&amp;quot;test static&amp;quot;);
+    }
+
+    public Test() {
+        System.out.println(&amp;quot;test constructor&amp;quot;);
+    }
+
+    public static void main(String[] args) {
+        new MyClass();
+    }
+}
+
+class Person{
+    static{
+        System.out.println(&amp;quot;person static&amp;quot;);
+    }
+    public Person(String str) {
+        System.out.println(&amp;quot;person &amp;quot;+str);
+    }
+}
+
+
+class MyClass extends Test {
+    Person person = new Person(&amp;quot;MyClass&amp;quot;);
+    static{
+        System.out.println(&amp;quot;myclass static&amp;quot;);
+    }
+
+    public MyClass() {
+        System.out.println(&amp;quot;myclass constructor&amp;quot;);
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;code&gt;test static&lt;/code&gt;&lt;br&gt;&lt;code&gt;myclass static&lt;/code&gt;&lt;br&gt;&lt;code&gt;person static&lt;/code&gt;&lt;br&gt;&lt;code&gt;person Test&lt;/code&gt;&lt;br&gt;&lt;code&gt;test constructor&lt;/code&gt;&lt;br&gt;&lt;code&gt;person MyClass&lt;/code&gt;&lt;br&gt;&lt;code&gt;myclass constructor&lt;/code&gt;&lt;/p&gt;
+&lt;h4 id=&quot;这段代码的输出结果是什么？-1&quot;&gt;&lt;a href=&quot;#这段代码的输出结果是什么？-1&quot; class=&quot;headerlink&quot; title=&quot;这段代码的输出结果是什么？&quot;&gt;&lt;/a&gt;这段代码的输出结果是什么？&lt;/h4&gt;&lt;pre&gt;&lt;code&gt;public class Test {
+
+    static{
+        System.out.println(&amp;quot;test static 1&amp;quot;);
+    }
+    public static void main(String[] args) {
+
+    }
+
+    static{
+        System.out.println(&amp;quot;test static 2&amp;quot;);
+    }
+}     
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;code&gt;test static 1&lt;/code&gt;&lt;br&gt;&lt;code&gt;test static 2&lt;/code&gt; &lt;/p&gt;
+&lt;h2 id=&quot;抽象类和方法&quot;&gt;&lt;a href=&quot;#抽象类和方法&quot; class=&quot;headerlink&quot; title=&quot;抽象类和方法&quot;&gt;&lt;/a&gt;抽象类和方法&lt;/h2&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;类&quot;&gt;&lt;a href=&quot;#类&quot; class=&quot;headerlink&quot; title=&quot;类&quot;&gt;&lt;/a&gt;类&lt;/h2&gt;&lt;p&gt;1) 在每个类文件中最多只允许出现一个public类&lt;/p&gt;
+&lt;p&gt;2) 如果没有显示地定义构造器，则编译器会自动创建一个无参构造器，如果显示地定义
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>java-io流知识点梳理</title>
