@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.freefpp.com/"/>
-  <updated>2016-05-24T12:39:23.000Z</updated>
+  <updated>2016-10-25T01:04:58.000Z</updated>
   <id>http://www.freefpp.com/</id>
   
   <author>
@@ -16,11 +16,90 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>100KM行动计划书</title>
+    <link href="http://www.freefpp.com/2016/10/25/100KM%E8%A1%8C%E5%8A%A8%E8%AE%A1%E5%88%92%E4%B9%A6/"/>
+    <id>http://www.freefpp.com/2016/10/25/100KM行动计划书/</id>
+    <published>2016-10-25T01:04:58.000Z</published>
+    <updated>2016-10-25T01:04:58.000Z</updated>
+    
+    <content type="html"></content>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>策略模式</title>
+    <link href="http://www.freefpp.com/2016/10/21/%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F/"/>
+    <id>http://www.freefpp.com/2016/10/21/策略模式/</id>
+    <published>2016-10-21T06:43:54.000Z</published>
+    <updated>2016-10-21T06:50:40.000Z</updated>
+    
+    <content type="html">&lt;h2 id=&quot;策略模式&quot;&gt;&lt;a href=&quot;#策略模式&quot; class=&quot;headerlink&quot; title=&quot;策略模式&quot;&gt;&lt;/a&gt;策略模式&lt;/h2&gt;&lt;p&gt;策略模式定义了算法族，分别封装起来，让它们之间可以互相替换，此模式让算法的变化独立于使用算法的客户。&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;策略模式&quot;&gt;&lt;a href=&quot;#策略模式&quot; class=&quot;headerlink&quot; title=&quot;策略模式&quot;&gt;&lt;/a&gt;策略模式&lt;/h2&gt;&lt;p&gt;策略模式定义了算法族，分别封装起来，让它们之间可以互相替换，此模式让算法的变化独立于使用算法的客户。&lt;/p&gt;
+
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>设计原则和模式</title>
+    <link href="http://www.freefpp.com/2016/07/13/%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99%E5%92%8C%E6%A8%A1%E5%BC%8F/"/>
+    <id>http://www.freefpp.com/2016/07/13/设计原则和模式/</id>
+    <published>2016-07-13T02:52:15.000Z</published>
+    <updated>2016-07-19T01:38:34.000Z</updated>
+    
+    <content type="html">&lt;h2 id=&quot;设计原则&quot;&gt;&lt;a href=&quot;#设计原则&quot; class=&quot;headerlink&quot; title=&quot;设计原则&quot;&gt;&lt;/a&gt;设计原则&lt;/h2&gt;&lt;p&gt;找出应用中可能需要变化之外，把它们独立出来，不要和那些不需要变化的代码混在一起。&lt;/p&gt;
+&lt;p&gt;针对接口编程，而不是针对实现编程。&lt;/p&gt;
+&lt;p&gt;多用组合，少用继承。（鸭子的行为不是继承来的，而是和适合的行为对象“组合”来的）&lt;/p&gt;
+&lt;p&gt;策略模式：定义了算法族，分别封装起来，让他们之间相互替换，此模式让算法的变化独立于使用算法的客户。&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;设计原则&quot;&gt;&lt;a href=&quot;#设计原则&quot; class=&quot;headerlink&quot; title=&quot;设计原则&quot;&gt;&lt;/a&gt;设计原则&lt;/h2&gt;&lt;p&gt;找出应用中可能需要变化之外，把它们独立出来，不要和那些不需要变化的代码混在一起。&lt;/p&gt;
+&lt;p&gt;针对接口编程，而不是针对实现
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>spring mvc知识点梳理</title>
+    <link href="http://www.freefpp.com/2016/05/25/spring-mvc%E7%9F%A5%E8%AF%86%E7%82%B9%E6%A2%B3%E7%90%86/"/>
+    <id>http://www.freefpp.com/2016/05/25/spring-mvc知识点梳理/</id>
+    <published>2016-05-25T00:49:20.000Z</published>
+    <updated>2016-05-26T05:59:30.000Z</updated>
+    
+    <content type="html">&lt;h2 id=&quot;MVC框架是什么&quot;&gt;&lt;a href=&quot;#MVC框架是什么&quot; class=&quot;headerlink&quot; title=&quot;MVC框架是什么&quot;&gt;&lt;/a&gt;MVC框架是什么&lt;/h2&gt;&lt;p&gt;全名是Model View Controller,是模型(model)-视图(view)-控制器(controller)的缩写,一种软件设计典范,用一种业务逻辑、数据、界面显示分离的方法组织代码。&lt;/p&gt;
+&lt;p&gt;Spring MVC应用程序中，模型通常由pojo对象组成，它在业务层被处理，在持久层中被持久化。视图通常是用jsp标准标签库编写的jsp模版。控制器部分是由dispatcher servlet负责。&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;MVC框架是什么&quot;&gt;&lt;a href=&quot;#MVC框架是什么&quot; class=&quot;headerlink&quot; title=&quot;MVC框架是什么&quot;&gt;&lt;/a&gt;MVC框架是什么&lt;/h2&gt;&lt;p&gt;全名是Model View Controller,是模型(model)-视图(view)-控
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
     <title>java集合知识点梳理</title>
     <link href="http://www.freefpp.com/2016/05/24/java%E9%9B%86%E5%90%88%E7%9F%A5%E8%AF%86%E7%82%B9%E6%A2%B3%E7%90%86/"/>
     <id>http://www.freefpp.com/2016/05/24/java集合知识点梳理/</id>
     <published>2016-05-24T12:39:23.000Z</published>
-    <updated>2016-05-24T12:39:23.000Z</updated>
+    <updated>2016-07-14T02:21:52.000Z</updated>
     
     <content type="html"></content>
     
