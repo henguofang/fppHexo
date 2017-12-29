@@ -1,0 +1,80 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> 建造者模式 · it's freedom</title><meta name="description" content="建造者模式 - 方平平"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="short icon" href="/favicon.png"><link rel="stylesheet" href="/css/apollo.css"><link rel="stylesheet" href="http://fonts.useso.com/css?family=Source+Sans+Pro:400,600" type="text/css"></head><body><div class="wrap"><header><a href="/" class="logo-link"><img src="/favicon.png"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">BLOG</a></li><li class="nav-list-item"><a href="/archives/" target="_self" class="nav-list-link">ARCHIVE</a></li><li class="nav-list-item"><a href="http://weibo.com/2730544260/profile" target="_blank" class="nav-list-link">WEIBO</a></li><li class="nav-list-item"><a href="https://github.com/henguofang" target="_blank" class="nav-list-link">GITHUB</a></li><li class="nav-list-item"><a href="/atom.xml" target="_self" class="nav-list-link">RSS</a></li></ul></header><section class="container"><div class="post"><article class="post-block"><h1 class="post-title">建造者模式</h1><div class="post-info">2017年2月6日</div><div class="post-content"><p>##建造者模式<br>建造者模式是对象的创建模式。建造模式可以将一个产品的内部表象与产品的生产过程分割开来，从而可以使一个建造过程生成具有不同的内部表象的产品对象。<br>1）抽象建造者角色（Builder）：为创建一个产品对象的各个部分指定抽象借口。<br>2）具体建造者角色（ConcreteBuilder）：实现Builder的接口以构造和装配该产品的各个部分，定义并明确它所创建的表示，并提供一个检索产品的接口。<br>3）导演者角色（Director）：构造一个使用Builder接口的对象，指导构建过程。<br>4）产品角色（Product）：表示被构造的复杂对象</p>
+<p>角色Builder: </p>
+<pre><code>public interface PersonBuilder {  
+    void buildHead();  
+    void buildBody();  
+    void buildFoot();  
+    Person buildPerson();  
+}  
+</code></pre><p> 角色concreteBuilder:</p>
+<pre><code> public class ManBuilder implements PersonBuilder {  
+     Person person;  
+     public ManBuilder() {  
+          person = new Man();  
+     }  
+     public void buildbody() {  
+          person.setBody(&quot;建造男人的身体&quot;);  
+     }  
+     public void buildFoot() {  
+          person.setFoot(&quot;建造男人的脚&quot;);  
+     }  
+     public void buildHead() {  
+          person.setHead(&quot;建造男人的头&quot;);  
+     }  
+     public Person buildPerson() {  
+          return person;  
+     }  
+}  
+</code></pre><p>  角色director:</p>
+<pre><code>public class PersonDirector {  
+   public Person constructPerson(PersonBuilder pb) {  
+        pb.buildHead();  
+        pb.buildBody();  
+        pb.buildFoot();  
+        return pb.buildPerson();  
+   }  
+}
+</code></pre><p>   角色Product：</p>
+<pre><code>public class Person {  
+ private String head;  
+ private String body;  
+ private String foot;  
+
+ public String getHead() {  
+      return head;  
+ }  
+ public void setHead(String head) {  
+      this.head = head;  
+ }  
+ public String getBody() {  
+      return body;  
+ }  
+ public void setBody(String body) {  
+      this.body = body;  
+ }  
+ public String getFoot() {  
+      return foot;  
+ }  
+ public void setFoot(String foot) {  
+      this.foot = foot;  
+ }  
+}  
+public class Man extends Person {  
+ public Man(){  
+      System.out.println(“开始建造男人&quot;);  
+ }  
+}  
+public class Woman extends Person {  
+ public Woman(){  
+      System.out.println(“开始建造女人&quot;);  
+ }  
+}  
+</code></pre><p> 测试:</p>
+<pre><code> public class Test{  
+ public static void main(String[] args) {  
+      PersonDirector pd = new PersonDirector();  
+      Person manPerson = pd.constructPerson(new                ManBuilder()); 
+      }  
+}  
+</code></pre><p>建造者模式在使用过程中可以演化出多种形式：<br>如果具体的被建造对象只有一个的话，可以省略抽象的Builder和Director，让ConcreteBuilder自己扮演指导者和建造者双重角色，甚至ConcreteBuilder也可以放到Product里面实现。<br>在《Effective Java》书中第二条，就提到“遇到多个构造器参数时要考虑用构建器”，其实这里的构建器就属于建造者模式，只是里面把四个角色都放到具体产品里面了。</p>
+</div></article></div></section><footer><div class="paginator"><a href="/2017/02/06/原型模式/" class="prev">PREV</a><a href="/2017/02/04/单例模式/" class="next">NEXT</a></div><div class="copyright"><p>© 2015 - 2017 <a href="http://yoursite.com">方平平</a>, unless otherwise noted.</p></div></footer></div><script async src="//cdn.bootcss.com/mathjax/2.6.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><script>(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;e=o.createElement(i);r=o.getElementsByTagName(i)[0];e.src='//www.google-analytics.com/analytics.js';r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));ga('create',"UA-65933410-1",'auto');ga('send','pageview');</script></body></html>

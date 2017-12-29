@@ -4,9 +4,9 @@
   
   <link href="/atom.xml" rel="self"/>
   
-  <link href="http://www.freefpp.com/"/>
-  <updated>2017-02-04T08:03:50.000Z</updated>
-  <id>http://www.freefpp.com/</id>
+  <link href="http://yoursite.com/"/>
+  <updated>2017-04-24T06:31:34.000Z</updated>
+  <id>http://yoursite.com/</id>
   
   <author>
     <name>方平平</name>
@@ -16,9 +16,145 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>spring</title>
+    <link href="http://yoursite.com/2017/04/24/spring/"/>
+    <id>http://yoursite.com/2017/04/24/spring/</id>
+    <published>2017-04-24T06:29:22.000Z</published>
+    <updated>2017-04-24T06:31:34.000Z</updated>
+    
+    <content type="html">&lt;p&gt;##spring ios&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;##spring ios&lt;/p&gt;
+
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>原型模式</title>
+    <link href="http://yoursite.com/2017/02/06/%E5%8E%9F%E5%9E%8B%E6%A8%A1%E5%BC%8F/"/>
+    <id>http://yoursite.com/2017/02/06/原型模式/</id>
+    <published>2017-02-06T07:32:23.000Z</published>
+    <updated>2017-02-06T08:16:43.000Z</updated>
+    
+    <content type="html">&lt;p&gt;##原型模式&lt;br&gt;原型模式是一个简单、易使用的创建型设计模式，通过给出一个原型对象来指明所创建的对象的类型，然后用复制这个原型对象的办法创建更多同类型的对象。原型模式要求对象实现一个可以“克隆”自身的接口，这样就可以通过复制一个实例对象本身来创建一个新的实例。这样一来，通过原型实例创建新的对象，就不再需要关心这个实例本身的类型，只要实现了克隆自身的方法，就可以通过这个方法来获取新的对象，而无需再去new来创建。&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;##原型模式&lt;br&gt;原型模式是一个简单、易使用的创建型设计模式，通过给出一个原型对象来指明所创建的对象的类型，然后用复制这个原型对象的办法创建更多同类型的对象。原型模式要求对象实现一个可以“克隆”自身的接口，这样就可以通过复制一个实例对象本身来创建一个新的实例。这样一来，通
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>建造者模式</title>
+    <link href="http://yoursite.com/2017/02/06/%E5%BB%BA%E9%80%A0%E8%80%85%E6%A8%A1%E5%BC%8F/"/>
+    <id>http://yoursite.com/2017/02/06/建造者模式/</id>
+    <published>2017-02-06T00:55:31.000Z</published>
+    <updated>2017-02-06T02:04:13.000Z</updated>
+    
+    <content type="html">&lt;p&gt;##建造者模式&lt;br&gt;建造者模式是对象的创建模式。建造模式可以将一个产品的内部表象与产品的生产过程分割开来，从而可以使一个建造过程生成具有不同的内部表象的产品对象。&lt;br&gt;1）抽象建造者角色（Builder）：为创建一个产品对象的各个部分指定抽象借口。&lt;br&gt;2）具体建造者角色（ConcreteBuilder）：实现Builder的接口以构造和装配该产品的各个部分，定义并明确它所创建的表示，并提供一个检索产品的接口。&lt;br&gt;3）导演者角色（Director）：构造一个使用Builder接口的对象，指导构建过程。&lt;br&gt;4）产品角色（Product）：表示被构造的复杂对象&lt;/p&gt;
+&lt;p&gt;角色Builder: &lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;public interface PersonBuilder {  
+    void buildHead();  
+    void buildBody();  
+    void buildFoot();  
+    Person buildPerson();  
+}  
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt; 角色concreteBuilder:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt; public class ManBuilder implements PersonBuilder {  
+     Person person;  
+     public ManBuilder() {  
+          person = new Man();  
+     }  
+     public void buildbody() {  
+          person.setBody(&amp;quot;建造男人的身体&amp;quot;);  
+     }  
+     public void buildFoot() {  
+          person.setFoot(&amp;quot;建造男人的脚&amp;quot;);  
+     }  
+     public void buildHead() {  
+          person.setHead(&amp;quot;建造男人的头&amp;quot;);  
+     }  
+     public Person buildPerson() {  
+          return person;  
+     }  
+}  
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;  角色director:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;public class PersonDirector {  
+   public Person constructPerson(PersonBuilder pb) {  
+        pb.buildHead();  
+        pb.buildBody();  
+        pb.buildFoot();  
+        return pb.buildPerson();  
+   }  
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;   角色Product：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;public class Person {  
+ private String head;  
+ private String body;  
+ private String foot;  
+
+ public String getHead() {  
+      return head;  
+ }  
+ public void setHead(String head) {  
+      this.head = head;  
+ }  
+ public String getBody() {  
+      return body;  
+ }  
+ public void setBody(String body) {  
+      this.body = body;  
+ }  
+ public String getFoot() {  
+      return foot;  
+ }  
+ public void setFoot(String foot) {  
+      this.foot = foot;  
+ }  
+}  
+public class Man extends Person {  
+ public Man(){  
+      System.out.println(“开始建造男人&amp;quot;);  
+ }  
+}  
+public class Woman extends Person {  
+ public Woman(){  
+      System.out.println(“开始建造女人&amp;quot;);  
+ }  
+}  
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt; 测试:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt; public class Test{  
+ public static void main(String[] args) {  
+      PersonDirector pd = new PersonDirector();  
+      Person manPerson = pd.constructPerson(new                ManBuilder()); 
+      }  
+}  
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;建造者模式在使用过程中可以演化出多种形式：&lt;br&gt;如果具体的被建造对象只有一个的话，可以省略抽象的Builder和Director，让ConcreteBuilder自己扮演指导者和建造者双重角色，甚至ConcreteBuilder也可以放到Product里面实现。&lt;br&gt;在《Effective Java》书中第二条，就提到“遇到多个构造器参数时要考虑用构建器”，其实这里的构建器就属于建造者模式，只是里面把四个角色都放到具体产品里面了。&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;##建造者模式&lt;br&gt;建造者模式是对象的创建模式。建造模式可以将一个产品的内部表象与产品的生产过程分割开来，从而可以使一个建造过程生成具有不同的内部表象的产品对象。&lt;br&gt;1）抽象建造者角色（Builder）：为创建一个产品对象的各个部分指定抽象借口。&lt;br&gt;2）具体建造者
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
     <title>单例模式</title>
-    <link href="http://www.freefpp.com/2017/02/04/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/"/>
-    <id>http://www.freefpp.com/2017/02/04/单例模式/</id>
+    <link href="http://yoursite.com/2017/02/04/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/"/>
+    <id>http://yoursite.com/2017/02/04/单例模式/</id>
     <published>2017-02-04T06:47:20.000Z</published>
     <updated>2017-02-04T08:03:50.000Z</updated>
     
@@ -455,8 +591,8 @@ public static void main(String[] args) {
   
   <entry>
     <title>工厂模式</title>
-    <link href="http://www.freefpp.com/2017/02/04/%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/"/>
-    <id>http://www.freefpp.com/2017/02/04/工厂模式/</id>
+    <link href="http://yoursite.com/2017/02/04/%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/"/>
+    <id>http://yoursite.com/2017/02/04/工厂模式/</id>
     <published>2017-02-04T03:09:34.000Z</published>
     <updated>2017-02-04T06:19:41.000Z</updated>
     
@@ -550,8 +686,8 @@ public class BroomFactory extends VehicleFactory{
   
   <entry>
     <title>业余兴趣爱好</title>
-    <link href="http://www.freefpp.com/2017/01/28/100KM%E8%A1%8C%E5%8A%A8%E8%AE%A1%E5%88%92%E4%B9%A6/"/>
-    <id>http://www.freefpp.com/2017/01/28/100KM行动计划书/</id>
+    <link href="http://yoursite.com/2017/01/28/100KM%E8%A1%8C%E5%8A%A8%E8%AE%A1%E5%88%92%E4%B9%A6/"/>
+    <id>http://yoursite.com/2017/01/28/100KM行动计划书/</id>
     <published>2017-01-28T01:04:58.000Z</published>
     <updated>2017-01-28T09:13:37.000Z</updated>
     
@@ -571,8 +707,8 @@ public class BroomFactory extends VehicleFactory{
   
   <entry>
     <title>观察者模式</title>
-    <link href="http://www.freefpp.com/2016/10/31/%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F/"/>
-    <id>http://www.freefpp.com/2016/10/31/观察者模式/</id>
+    <link href="http://yoursite.com/2016/10/31/%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F/"/>
+    <id>http://yoursite.com/2016/10/31/观察者模式/</id>
     <published>2016-10-31T01:55:10.000Z</published>
     <updated>2016-10-31T02:38:15.000Z</updated>
     
@@ -591,8 +727,8 @@ public class BroomFactory extends VehicleFactory{
   
   <entry>
     <title>策略模式</title>
-    <link href="http://www.freefpp.com/2016/10/21/%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F/"/>
-    <id>http://www.freefpp.com/2016/10/21/策略模式/</id>
+    <link href="http://yoursite.com/2016/10/21/%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F/"/>
+    <id>http://yoursite.com/2016/10/21/策略模式/</id>
     <published>2016-10-21T06:43:54.000Z</published>
     <updated>2016-10-21T06:50:40.000Z</updated>
     
@@ -611,8 +747,8 @@ public class BroomFactory extends VehicleFactory{
   
   <entry>
     <title>spring mvc知识点梳理</title>
-    <link href="http://www.freefpp.com/2016/05/25/spring-mvc%E7%9F%A5%E8%AF%86%E7%82%B9%E6%A2%B3%E7%90%86/"/>
-    <id>http://www.freefpp.com/2016/05/25/spring-mvc知识点梳理/</id>
+    <link href="http://yoursite.com/2016/05/25/spring-mvc%E7%9F%A5%E8%AF%86%E7%82%B9%E6%A2%B3%E7%90%86/"/>
+    <id>http://yoursite.com/2016/05/25/spring-mvc知识点梳理/</id>
     <published>2016-05-25T00:49:20.000Z</published>
     <updated>2016-05-26T05:59:30.000Z</updated>
     
@@ -631,8 +767,8 @@ public class BroomFactory extends VehicleFactory{
   
   <entry>
     <title>java集合知识点梳理</title>
-    <link href="http://www.freefpp.com/2016/05/24/java%E9%9B%86%E5%90%88%E7%9F%A5%E8%AF%86%E7%82%B9%E6%A2%B3%E7%90%86/"/>
-    <id>http://www.freefpp.com/2016/05/24/java集合知识点梳理/</id>
+    <link href="http://yoursite.com/2016/05/24/java%E9%9B%86%E5%90%88%E7%9F%A5%E8%AF%86%E7%82%B9%E6%A2%B3%E7%90%86/"/>
+    <id>http://yoursite.com/2016/05/24/java集合知识点梳理/</id>
     <published>2016-05-24T12:39:23.000Z</published>
     <updated>2016-07-14T02:21:52.000Z</updated>
     
@@ -647,8 +783,8 @@ public class BroomFactory extends VehicleFactory{
   
   <entry>
     <title>常见的面试题</title>
-    <link href="http://www.freefpp.com/2016/05/24/%E5%B8%B8%E8%A7%81%E7%9A%84%E9%9D%A2%E8%AF%95%E9%A2%98/"/>
-    <id>http://www.freefpp.com/2016/05/24/常见的面试题/</id>
+    <link href="http://yoursite.com/2016/05/24/%E5%B8%B8%E8%A7%81%E7%9A%84%E9%9D%A2%E8%AF%95%E9%A2%98/"/>
+    <id>http://yoursite.com/2016/05/24/常见的面试题/</id>
     <published>2016-05-24T11:36:18.000Z</published>
     <updated>2016-05-24T11:45:58.000Z</updated>
     
@@ -663,8 +799,8 @@ public class BroomFactory extends VehicleFactory{
   
   <entry>
     <title>java基础知识点梳理</title>
-    <link href="http://www.freefpp.com/2016/05/18/java%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E7%82%B9%E6%A2%B3%E7%90%86/"/>
-    <id>http://www.freefpp.com/2016/05/18/java基础知识点梳理/</id>
+    <link href="http://yoursite.com/2016/05/18/java%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E7%82%B9%E6%A2%B3%E7%90%86/"/>
+    <id>http://yoursite.com/2016/05/18/java基础知识点梳理/</id>
     <published>2016-05-18T09:23:19.000Z</published>
     <updated>2016-05-24T12:27:25.000Z</updated>
     
@@ -865,8 +1001,8 @@ class MyClass extends Test {
   
   <entry>
     <title>java-io流知识点梳理</title>
-    <link href="http://www.freefpp.com/2016/05/18/java-io%E6%B5%81%E7%9F%A5%E8%AF%86%E7%82%B9%E6%A2%B3%E7%90%86/"/>
-    <id>http://www.freefpp.com/2016/05/18/java-io流知识点梳理/</id>
+    <link href="http://yoursite.com/2016/05/18/java-io%E6%B5%81%E7%9F%A5%E8%AF%86%E7%82%B9%E6%A2%B3%E7%90%86/"/>
+    <id>http://yoursite.com/2016/05/18/java-io流知识点梳理/</id>
     <published>2016-05-18T09:05:58.000Z</published>
     <updated>2016-05-18T09:05:58.000Z</updated>
     
@@ -881,8 +1017,8 @@ class MyClass extends Test {
   
   <entry>
     <title>java线程知识点梳理</title>
-    <link href="http://www.freefpp.com/2016/05/13/%E7%BA%BF%E7%A8%8B/"/>
-    <id>http://www.freefpp.com/2016/05/13/线程/</id>
+    <link href="http://yoursite.com/2016/05/13/%E7%BA%BF%E7%A8%8B/"/>
+    <id>http://yoursite.com/2016/05/13/线程/</id>
     <published>2016-05-13T02:55:34.000Z</published>
     <updated>2016-05-18T08:46:08.000Z</updated>
     
